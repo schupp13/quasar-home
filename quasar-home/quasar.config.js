@@ -13,6 +13,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 
 
 const { configure } = require('quasar/wrappers');
+const ModuleFederationPlugin = require("webpack").container.ModuleFederationPlugin;
 
 module.exports = configure(function (ctx) {
   return {
@@ -76,6 +77,16 @@ module.exports = configure(function (ctx) {
       chainWebpack (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
+          .use(ModuleFederationPlugin, [{
+            name: 'home',
+            filename: "remoteEntry.js",
+            exposes: {
+              "./HomeHeader" : "./src/components/HomeHeader.vue"
+            },
+          }])
+      },
+      extendWebpack(ctx){
+        ctx.optimization.splitChunks = false;
       }
       
     },

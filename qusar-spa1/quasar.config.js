@@ -10,6 +10,9 @@
 
 
 const ESLintPlugin = require('eslint-webpack-plugin')
+const { ModuleFederationPlugin } = require('webpack').container;
+
+
 
 
 const { configure } = require('quasar/wrappers');
@@ -76,7 +79,16 @@ module.exports = configure(function (ctx) {
       chainWebpack (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
+          .use(ModuleFederationPlugin, [{
+            name: "spa1",
+            filename: "remoteEntry.js",
+            remotes: {
+              home: "home@http://localhost:8080/remoteEntry.js",
+            },
+          }])
       }
+
+      
       
     },
 
