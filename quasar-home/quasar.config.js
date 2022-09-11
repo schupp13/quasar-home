@@ -81,7 +81,35 @@ module.exports = configure(function (ctx) {
             name: 'home',
             filename: "remoteEntry.js",
             exposes: {
-              "./HomeHeader" : "./src/components/HomeHeader.vue"
+              "./HomeHeader" : "./src/components/HomeHeader.vue",
+              "./HomeButton" : "./src/components/HomeButton.vue",
+              "./HomeButtonWithQuasarComponent" : "./src/components/HomeButtonWithQuasarComponent.vue"
+            },
+            shared: {
+              "quasar": {
+                eager: true,
+                singleton: true,
+              } ,
+              "vue": {
+                eager: true,
+                singleton: true,
+              } ,
+              "@quasar/extras": {
+                eager: true,
+                singleton: true,
+              },
+              "core-js": {
+                eager: true,
+                singleton: true,
+              },
+              "pinia": {
+                eager: true,
+                singleton: true,
+              },
+              "vue-router": {
+                eager: true,
+                singleton: true,
+              },
             },
           }])
       },

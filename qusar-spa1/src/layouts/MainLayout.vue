@@ -1,6 +1,5 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-   <HomeHeader />
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -30,7 +29,6 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue';
-import HomeHeader from 'home/HomeHeader';
 
 const linksList = [
   {
@@ -82,7 +80,6 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    HomeHeader
   },
 
 
